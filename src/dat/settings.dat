@@ -1,0 +1,44 @@
+**EVENT OPTIONS**
+Custom points: false
+Allow editing players ID: false
+Automatically fix the amount of session events: true
+Automatically split sessions to events: true
+Team points are calculated according to clans: true
+
+**TABLE OPTIONS**
+Project image: ./pic/emptyProject.png
+Vertical headers: false +
+Show race results separately: false
+Show race points separately: false
+Show lap results separately: false
+Show player ID: true
+Show player name: true
+Show player clan: true
+Show player lap results: false
+Show player race results: false
+Show player best laps: true
+Show player total time: false
+Show player avg. position: true
+Show player avg. best lap position: true
+Show time difference: false
+Show player race performance: false
+Show player lap performance: false
+Show total points: true
+Show total team points: true
+Show player race points: false
+Show player position: true
+Show played races: true
+
+**JSON OPTIONS**
+Format ID: 2856
+Format version: 3
+Max events to remember: 100
+Max player count: 100
+
+**COMMON OPTIONS**
+Show additional warnings: true
+Screen stretcher: true
+
+**POINT OPTIONS**
+Score option 1: 0, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 4343, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+Score option 2: 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1

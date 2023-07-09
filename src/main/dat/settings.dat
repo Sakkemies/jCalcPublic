@@ -1,0 +1,46 @@
+**EVENT OPTIONS**
+Custom scores: false
+Player ID editing: true
+Auto correct events: true
+Auto split events: true
+Team scores by clan: true
+
+**TABLE OPTIONS**
+Vertical headers: false
+Show race results separately: false
+Show race results separately: false
+Show race points separately: false
+Show lap results separately: false
+Show player id: true
+Show player name: true
+Show player clan: true
+Show lap results: false
+Show race results: false
+Show best laps: true
+Show total time: false
+Show average position: true
+Show average lap position: true
+Show time difference: false
+Show race performance: false
+Show lap performance: false
+Show total points: true
+Show total team points: true
+Show race points: false
+Show team points: false
+Show position: false
+Show team position: false
+Show played events: true
+**JSON OPTIONS**
+Format ID: 2856
+Format version: 3
+Max events to remember: 100
+Max player count: 100
+
+**COMMON OPTIONS**
+Sidebar events: 20
+Show additional warnings: false
+Tableview enabled: false
+
+**POINT OPTIONS**
+Score option 1: 0, 25, 20, 18, 17, 14, 12, 11, 10, 5, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+Score option 2: 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
