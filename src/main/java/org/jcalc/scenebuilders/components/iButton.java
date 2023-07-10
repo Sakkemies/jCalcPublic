@@ -405,6 +405,7 @@ public class iButton extends Button
     }
     public Button getRefreshButton(String text)
     {
+        if(StaticSystemController.SceneControl!=2)this.setDisable(true);
         CreateEmptyButton("Refresh");
 
         this.setOnMouseReleased(actionEvent -> {
@@ -622,6 +623,7 @@ public class iButton extends Button
 
     public Button getAddNewEvent(String text)
     {
+        if(StaticSystemController.SceneControl!=2)this.setDisable(true);
         CreateEmptyAddButton("+");
         this.setStyle("-fx-text-fill: #caffb3;");
 

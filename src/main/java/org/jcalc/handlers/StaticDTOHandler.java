@@ -1,11 +1,10 @@
 package org.jcalc.handlers;
 
-import org.jcalc.dto.Player;
-import org.jcalc.dto.SuperDTO;
-import org.jcalc.dto.Team;
+import org.jcalc.dto.*;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class StaticDTOHandler
@@ -46,7 +45,7 @@ public class StaticDTOHandler
                             player.clan = superDTO.m_playerStats[i].getClan();
                             player.raceResults += ", " + giveAsString(superDTO.m_playerStats[i].getRank());
                             player.lapResults += ", " + giveAsString(superDTO.m_playerStats[i].getLapRank());
-                            player.bestLaps += countBestLaps(superDTO.m_playerStats[i].getRank(),superDTO.m_playerStats[i].getLapRank());
+                            player.bestLaps += countBestLaps(superDTO.m_playerStats[i].getLapRank());
                             player.playedRaces += countPlayedRaces(superDTO.m_playerStats[i].getRank());
                             if(!StaticSystemController.UseCustomPoints) player.teamPointList.addAll(superDTO.m_playerStats[i].getTeamPoints(superDTO));
                             else player.teamPointList.addAll(superDTO.m_playerStats[i].getPoints(superDTO));
@@ -118,7 +117,11 @@ public class StaticDTOHandler
             index+=count;
         }
 
+        setPlayerAndTeamPositions();
         smoothLists();
+        if (StaticSystemController.compareTo == StaticSystemController.compareToTeamPoints && StaticSystemController.TeamsByClan) sortByTeam();
+        else if (StaticSystemController.compareTo == StaticSystemController.compareToTeamPoints && !StaticSystemController.TeamsByClan) Collections.sort(playerList, new PlayerComparator());
+        else Collections.sort(playerList, new PlayerComparator());
     }
 
     public static void smoothLists()
@@ -261,7 +264,7 @@ public class StaticDTOHandler
         player.racePointList.addAll(playerstats.getPoints(superDTO));
         player.lapPosList.addAll(playerstats.getLapRank());
         player.racePosList.addAll(playerstats.getRank());
-        player.bestLaps += countBestLaps(playerstats.getRank(),playerstats.getLapRank());
+        player.bestLaps += countBestLaps(playerstats.getLapRank());
         player.playedRaces += countPlayedRaces(playerstats.getRank());
         player.averagePosition = getAsAvr(player.racePosList);
         player.averageLapPosition = getAsAvr(player.lapPosList);
@@ -319,7 +322,7 @@ public class StaticDTOHandler
         return value;
     }
 
-    public static int countBestLaps(List<Integer> list1,List<Integer> list2)
+    public static int countBestLaps(List<Integer> list1)
     {
         int rr = 0;
 
@@ -333,7 +336,7 @@ public class StaticDTOHandler
                 }
             }
         }
-        if(list2 != null)
+        /**if(list2 != null)
         {
             for (int i = 0; i < list2.size(); i++)
             {
@@ -342,7 +345,7 @@ public class StaticDTOHandler
                     rr++;
                 }
             }
-        }
+        }**/
         return rr;
     }
     public static int countPoints(List<Integer> list1,List<Integer> list2)
@@ -420,5 +423,55 @@ public class StaticDTOHandler
         //if(reals.size() > 0) {num = (100 * sum / reals.size());}
 
         return floati;
+    }
+
+    public static void setPlayerAndTeamPositions()
+    {
+        int tem = StaticSystemController.compareTo;
+        StaticSystemController.compareTo = StaticSystemController.compareToPoints;
+        Collections.sort(playerList, new PlayerComparator());
+
+        int i = 1;
+        for(Player player: playerList)
+        {
+            player.position = i;
+            i++;
+        }
+
+        StaticSystemController.compareTo = StaticSystemController.compareToTeamPoints;
+        if(StaticSystemController.TeamsByClan) {
+            Collections.sort(teamList, new TeamComparator());
+
+            i = 1;
+            for(Team team: teamList) {
+                for (Player player : playerList)
+                {
+                    if(player.clan.equals(team.TAG)) {
+                        player.teamPosition = i;
+                    }
+                }
+                i++;
+            }
+        }
+        StaticSystemController.compareTo = tem;
+
+    }
+    public static void sortByTeam()
+    {
+        List<Player> temp = new ArrayList<>();
+        Collections.sort(playerList,new PlayerComparator());
+        Collections.sort(teamList, new TeamComparator());
+        if(StaticSystemController.TeamsByClan) {
+            for (Team team : teamList) {
+                for (Player player : playerList) {
+                    if (player.clan.equals(team.TAG)) {
+                        temp.add(player);
+                    }
+                }
+            }
+        }
+
+
+        playerList = temp;
     }
 }

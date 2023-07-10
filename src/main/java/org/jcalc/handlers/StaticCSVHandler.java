@@ -17,6 +17,7 @@ public class StaticCSVHandler
     public static List<String> keyPairs = new ArrayList<>();
     public static void createCSVFile()
     {
+        StaticDTOHandler.updatePlayerList();
         keyPairs = new ArrayList<>();
         dataText = "";
         setFields();
@@ -27,6 +28,12 @@ public class StaticCSVHandler
     {
         for(Player player: StaticDTOHandler.playerList) {
             dataText += "\n";
+            if (StaticYGridPaneController.showPosition) {
+                dataText += player.position + dataSplitter;
+            }
+            if (StaticYGridPaneController.showTeamPosition) {
+                dataText += player.teamPosition + dataSplitter;
+            }
             if (StaticYGridPaneController.showPlayerId) {
                 dataText += player.id + dataSplitter;
             }
@@ -117,12 +124,6 @@ public class StaticCSVHandler
                 }
                 else dataText += player.totalTeamPoints + dataSplitter;
             }
-            if (StaticYGridPaneController.showPosition) {
-                dataText += player.position + dataSplitter;
-            }
-            if (StaticYGridPaneController.showTeamPosition) {
-                dataText += player.teamPosition + dataSplitter;
-            }
         }
         System.out.println(dataText);
         StaticFileSaver.saveCustomData(dataText,".csv",StaticSystemController.projectName,"Export CSV", "Export CSV");
@@ -154,6 +155,8 @@ public class StaticCSVHandler
 
     public static void setFields()
     {
+        if(StaticYGridPaneController.showPosition) {dataText += positionString; keyPairs.add(positionString);}
+        if(StaticYGridPaneController.showTeamPosition) {dataText += teamPositionString; keyPairs.add(teamPositionString);}
         if(StaticYGridPaneController.showPlayerId) {dataText += IDString; keyPairs.add(IDString);}
         if(StaticYGridPaneController.showPlayerName) {dataText += playerNameString; keyPairs.add(playerNameString);}
         if(StaticYGridPaneController.showClan) {dataText += clanString; keyPairs.add(clanString);}
@@ -189,8 +192,6 @@ public class StaticCSVHandler
 
         if(StaticYGridPaneController.showTotalPoints) {dataText += totalPointsString; keyPairs.add(totalPointsString);}
         if(StaticYGridPaneController.showTotalTeamPoints) {dataText += totalTeamPointsString; keyPairs.add(totalTeamPointsString);}
-        if(StaticYGridPaneController.showPosition) {dataText += positionString; keyPairs.add(positionString);}
-        if(StaticYGridPaneController.showTeamPosition) {dataText += teamPositionString; keyPairs.add(teamPositionString);}
 
         //System.out.println(dataText);
     }

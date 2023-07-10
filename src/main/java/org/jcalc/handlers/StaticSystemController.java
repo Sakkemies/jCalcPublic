@@ -16,6 +16,7 @@ import java.util.List;
 
 public class StaticSystemController
 {
+    public static String defaultBackgroundPath = "./pic/background.png";
     public static String defaultProjectBackgroundPath = "./pic/background.png";
     public static String defaultProjectImagePath = "./pic/emptyProject.png";
     public static String pathToProjectImage = defaultProjectImagePath;
@@ -32,7 +33,7 @@ public class StaticSystemController
     public static boolean mergeActive = false;
 
     /**COMPARE**/
-    public static int compareTo = 1;
+    public static int compareTo = 13;
     public static int compareToPoints = 0;
     public static int compareToTeamPoints = 1;
     public static int compareToID = 2;
@@ -84,7 +85,7 @@ public class StaticSystemController
     public static String FileNameString = "./";
     public static File temporarySuperJSONFile = new File(FileNameString);
     /**Scene related values**/
-    public static final String Version = "v0.62";
+    public static final String Version = "v0.63";
     public static final String Name = "jCalc";
     public static int SceneControl = 0;     //0 = MainScene, 1 = TableScene
     public static final int MaxScenes = 2;

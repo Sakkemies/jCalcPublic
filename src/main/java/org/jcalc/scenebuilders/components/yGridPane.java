@@ -222,6 +222,8 @@ public class yGridPane extends GridPane
     {
         List<Pair<String, Boolean>> listOfPairs = new ArrayList<>();
 
+        listOfPairs.add(new Pair<String, Boolean>(positionString, StaticYGridPaneController.showPosition));
+        listOfPairs.add(new Pair<String, Boolean>(teamPositionString, StaticYGridPaneController.showTeamPosition));
         listOfPairs.add(new Pair<String, Boolean>(IDString, StaticYGridPaneController.showPlayerId));
         listOfPairs.add(new Pair<String, Boolean>(nameString, StaticYGridPaneController.showPlayerName));
         listOfPairs.add(new Pair<String, Boolean>(clanString, StaticYGridPaneController.showClan));
@@ -279,8 +281,8 @@ public class yGridPane extends GridPane
 
             listOfPairs.add(new Pair<String, Boolean>(totalPointsString, StaticYGridPaneController.showTotalPoints));
             listOfPairs.add(new Pair<String, Boolean>(totalTeamPointsString, StaticYGridPaneController.showTotalTeamPoints));
-            listOfPairs.add(new Pair<String, Boolean>(positionString, StaticYGridPaneController.showPosition));
-            listOfPairs.add(new Pair<String, Boolean>(teamPositionString, StaticYGridPaneController.showTeamPosition));
+            //listOfPairs.add(new Pair<String, Boolean>(positionString, StaticYGridPaneController.showPosition));
+            //listOfPairs.add(new Pair<String, Boolean>(teamPositionString, StaticYGridPaneController.showTeamPosition));
 
             int i = 0;
             for (Pair<String, Boolean> pair : listOfPairs) {
@@ -405,11 +407,11 @@ public class yGridPane extends GridPane
             playerList = StaticDTOHandler.getPlayerList();
             teamList = StaticDTOHandler.getTeamList();
 
-            setPlayerAndTeamPositions();
+            //setPlayerAndTeamPositions();
 
-            if (StaticSystemController.compareTo == StaticSystemController.compareToTeamPoints && StaticSystemController.TeamsByClan) sortByTeam();
-            else if (StaticSystemController.compareTo == StaticSystemController.compareToTeamPoints && !StaticSystemController.TeamsByClan) Collections.sort(playerList, new PlayerComparator());
-            else Collections.sort(playerList, new PlayerComparator());
+            //if (StaticSystemController.compareTo == StaticSystemController.compareToTeamPoints && StaticSystemController.TeamsByClan) sortByTeam();
+            //else if (StaticSystemController.compareTo == StaticSystemController.compareToTeamPoints && !StaticSystemController.TeamsByClan) Collections.sort(playerList, new PlayerComparator());
+            //else Collections.sort(playerList, new PlayerComparator());
 
             int e = 1;
             i = 0;
@@ -636,7 +638,7 @@ public class yGridPane extends GridPane
         if(StaticSystemController.TeamsByClan) {
             Collections.sort(teamList, new TeamComparator());
 
-            i = 0;
+            i = 1;
             for(Team team: teamList) {
                 for (Player player : playerList)
                 {

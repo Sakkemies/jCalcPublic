@@ -475,8 +475,6 @@ public class iMenuBar extends MenuBar
     public static final String showLapPerformanceString = "Show player lap performance";
     //public static final String
 
-    public static final String exportAsCSVString = "Export project as csv -file";
-
     public MenuBar getTableMenuBar()
     {
         this.getMenuBar();
@@ -707,7 +705,9 @@ public class iMenuBar extends MenuBar
     }
 
     public static final String exportMenuString = "Export...";
-    public static final String exportProjectAsTSUString = "Export project as TSU compatible json";
+    public static final String exportProjectAsTSUString = "Export project as TSU compatible json -file";
+    public static final String exportAsCSVString = "Export project as csv -file";
+    public static final String exportAsHTLM = "Export project as html -file";
     public static Menu getExportMenu()
     {
         Menu exportMenu = UIUtils.getDefaultMenu(exportMenuString);
@@ -718,13 +718,19 @@ public class iMenuBar extends MenuBar
             StaticCSVHandler.createCSVFile();
         });
 
-        MenuItem exportAsTSU = UIUtils.getDefaultMenuItem(exportProjectAsTSUString);
+        MenuItem exportAsHTML = UIUtils.getDefaultMenuItem(exportAsHTLM);
+        exportAsHTML.setOnAction(e ->
+        {
+            StaticHTMLHandler.createHTMLFile();
+        });
+
+        MenuItem exportAsTSU = UIUtils.getDefaultMenuItem(exportProjectAsTSUString);exportAsTSU.setDisable(true);
         exportAsTSU.setOnAction(e ->
         {
             //StaticCSVHandler.createCSVFile();
         });
 
-        exportMenu.getItems().addAll(exportAsCSV, exportAsTSU);
+        exportMenu.getItems().addAll(exportAsCSV, exportAsHTML,exportAsTSU);
         return exportMenu;
     }
     public static final String showPlayerRacePointsString = "Show player race points";

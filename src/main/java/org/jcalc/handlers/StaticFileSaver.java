@@ -18,9 +18,8 @@ public class StaticFileSaver
 {
     public static final String pathString = "path:";
     public static final String nameString = "name:";
-    public static final String showWarningsString = "Show additional warnings: ";
+    public static final String pathToBackgroundString = "project_background:";
     public static final String showWarningsLoaderString = "Show additional warnings";
-    public static final String screenStretcherString = "Screen stretcher: ";
     public static final String screenStretcherLoaderString = "Screen stretcher";
 
     public static void saveCustomData(String data, String format, String fileName, String description, String title)
@@ -33,7 +32,7 @@ public class StaticFileSaver
             }
             File file = new File(fileName);
 
-                boolean res = file.createNewFile();
+                //boolean res = file.createNewFile();
                 FileWriter writer = new FileWriter(filename);
                 writer.write(data);
 
@@ -65,14 +64,15 @@ public class StaticFileSaver
 
             temp = StaticSystemController.SuperDTOlist;
 
-            boolean res = file.createNewFile();
+            //boolean res = file.createNewFile();
 
             FileWriter writer = new FileWriter(filename);
             gson.toJson(temp, writer);
 
             String jcalc = "";
             jcalc += pathString + StaticSystemController.pathToProjectImage +"\n";
-            jcalc += nameString + StaticSystemController.projectName;
+            jcalc += nameString + StaticSystemController.projectName + "\n";
+            jcalc += pathToBackgroundString + StaticSystemController.defaultProjectBackgroundPath + "\n";
 
             System.out.println("File " + filename + " saved succesfully");
 
@@ -149,8 +149,8 @@ public class StaticFileSaver
 
         settingsString += "**COMMON OPTIONS**\n";
         //settingsString += "Sidebar events: " + StaticSystemController.MaxScrollEventButton + "\n";
-        settingsString += showWarningsString + StaticSystemController.ShowWarnings + "\n";
-        settingsString += screenStretcherString + StaticSystemController.screenStretcher + "\n\n";
+        settingsString += showWarningsLoaderString + ":" + StaticSystemController.ShowWarnings + "\n";
+        settingsString += screenStretcherLoaderString + ": " + StaticSystemController.screenStretcher + "\n\n";
         //settingsString += "Tableview enabled: " + StaticSystemController.TableViewEnabled + "\n\n";
 
 
@@ -304,7 +304,7 @@ public class StaticFileSaver
                 }
             }
 
-            boolean res = file.createNewFile();
+            //boolean res = file.createNewFile();
 
             FileWriter writer = new FileWriter(filename);
             gson.toJson(temp, writer);;
@@ -354,7 +354,7 @@ public class StaticFileSaver
                 }
             }
 
-            boolean res = file.createNewFile();
+            //boolean res = file.createNewFile();
 
             FileWriter writer = new FileWriter(filename);
             String json = gson.toJson(temp);

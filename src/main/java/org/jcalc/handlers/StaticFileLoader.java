@@ -69,6 +69,48 @@ public class StaticFileLoader
         }
     }
 
+    public static void loadCustomBacgroundImage(String path, boolean fileChooser) //TODO
+    {
+        String filename = "";
+        if(fileChooser)
+        {
+            if (path != null)
+            {
+                filename = ChooseImageFile(path);
+            }
+            else
+            {
+                filename = ChooseImageFile("");
+            }
+            Image img = null;
+        }
+        else
+        {
+            filename = path;
+        }
+        Image img = null;
+        try
+        {
+            FileInputStream input = new FileInputStream(filename);
+            img = new Image(input);
+            input.close();
+            BackgroundImage backgroundImage = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(StaticSceneBuilder.SceneWidth,StaticSceneBuilder.SceneHeight,true,true,true,true));
+            Background background = new Background(backgroundImage);
+            //StaticSystemController.projectBackground = background;
+            StaticSystemController.defaultProjectBackgroundPath = filename;
+        }
+        catch (FileNotFoundException e) {
+            System.out.println(e);
+        }
+        catch (IOException e) {
+            System.out.println(e);
+        }
+        catch (NullPointerException e)
+        {
+            System.out.println(e);
+        }
+    }
+
     public static void loadProjectImage(String path, boolean fileChooser) //TODO
     {
         String filename = "";
@@ -768,6 +810,11 @@ public class StaticFileLoader
                         StaticSystemController.pathToProjectImage = line2.replaceAll(StaticFileSaver.pathString,"");
                         //System.out.println(line2.replaceAll(StaticFileSaver.pathString,""));
                         loadProjectImage(StaticSystemController.pathToProjectImage,false);
+                    }
+                    if(line2.contains(StaticFileSaver.pathToBackgroundString)) {
+                        StaticSystemController.defaultProjectBackgroundPath = line2.replaceAll(StaticFileSaver.pathToBackgroundString,"");
+                        //System.out.println(line2.replaceAll(StaticFileSaver.pathString,""));
+                        loadCustomBacgroundImage(StaticSystemController.defaultProjectBackgroundPath,false);
                     }
                     else if(line2.contains(StaticFileSaver.nameString)) {
                         StaticSystemController.projectName = line2.replaceAll(StaticFileSaver.nameString,"");
